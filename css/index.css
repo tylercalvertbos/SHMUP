@@ -1,8 +1,34 @@
-canvas {
-	position: absolute;
-	background-color: red;
-	z-index: 0;
-	background-size: cover;
-	background-position: center;
+@font-face {
+	font-family: '8bit';
+	src : url(../fonts/8bit.TTF);
 }
 
+html {
+	background: black;
+}
+
+h1 {
+	font-family: '8bit';
+	text-align: center;
+	color: white;
+	font-size: 200px;
+	margin: 200px;
+}
+
+p {
+	font-family : '8bit';
+	color: white;
+	text-align: center;
+	vertical-align: center;
+	font-size: 50px;
+	margin-top: 500px;
+}
+
+a {
+	text-decoration : none;
+	color: white;
+}
+
+a:hover {
+	color: #999999;
+}

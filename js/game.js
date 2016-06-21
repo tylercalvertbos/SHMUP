@@ -10,6 +10,7 @@ $(document).ready(function() {
 
 	document.body.appendChild(canvas)
 
+
 // Define Variables
 
 var score = 0;
@@ -23,7 +24,7 @@ bgImage.onload = function() {
 	bgReady = true;
 };
 
-bgImage.src = '';
+bgImage.src = 'images/sealion.jpg';
 
 // Hero Sprite
 
@@ -45,7 +46,7 @@ enemy1Sprite.onload = function() {
 	enemy1Ready = false;
 };
 
-enemy1Sprite.src = '';
+enemy1Sprite.src = 'images/enemy1.png';
 
 var enemy2Ready = false;
 var enemy2Sprite = new Image();
@@ -54,7 +55,7 @@ enemy1Sprite.onload = function() {
 	enemy2Ready = false;
 };
 
-enemy2Sprite.src = '';
+enemy2Sprite.src = 'images/enemy2.png';
 
 var enemy3Ready = false;
 var enemy3Sprite = new Image();
@@ -63,12 +64,26 @@ enemy3Sprite.onload = function() {
 	enemy3Ready = false;
 };
 
-enemy3Sprite.src = '';
+enemy3Sprite.src = 'images/enemy3.png';
+
+var bulletReady = false;
+var bulletSprite = new Image();
+
+bulletSprite.onload = function() {
+	bulletReady = true;
+}
+
+bulletSprite.src = '';
 
 // Objects
 
 var hero = {
-	speed : 512,
+	speed : 600,
+	x : 0,
+	y : 0
+}
+var bullet = {
+	speed : 1500,
 	x : 0,
 	y : 0
 }
@@ -91,6 +106,12 @@ var enemy3 = {
 	y : 0
 }
 
+// Pause
+
+var pauseGame = function() {
+
+}
+
 // Player Input
 
 var keysDown = {};
@@ -103,74 +124,56 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 }, false);
 
+var update = function (modifier) {
+	if (87 in keysDown) { // Player holding up
+		hero.y -= hero.speed * modifier;
+	}
+	if (83 in keysDown) { // Player holding down
+		hero.y += hero.speed * modifier;
+	}
+	if (65 in keysDown) { // Player holding left
+		hero.x -= hero.speed * modifier;
+	}
+	if (68 in keysDown) { // Player holding right
+		hero.x += hero.speed * modifier;
+	}
+	if (191 in keysDown) { // Player firing
+		
+	}
+	if (82 in keysDown) { // Player reloading
+		location.reload(index.html);
+	}
+	if (80 in keysDown) { // Player pausing
+		pauseGame();
+	}
+}
+
 // Reset Game
 
 var reset = function() {
-	hero.y = canvas.height / 2;
+	hero.y = canvas.height / 2.75;
 }
-
-// Update Objects
-
-var update = function (modifier) {
-	if (87 in keysDown) { // Up
-		hero.y -= hero.speed * modifier;
-	}
-	if (83 in keysDown) { // Down
-		hero.y += hero.speed * modifier;
-	}
-	if (65 in keysDown) { // Left
-		hero.x -= hero.speed * modifier;
-	}
-	if (68 in keysDown) { // Right
-		hero.x += hero.speed * modifier;
-	}
-
-	if (
-		hero.x < enemy1.x + enemy1.width &&
-   		hero.x + hero.width > enemy1.x &&
-   		hero.y < enemy1.y + enemy1.height &&
-   		hero.height + hero.y > enemy1.y
-	) {
-		reset();
-	} else if (
-		hero.x < enemy2.x + enemy2.width &&
-   		hero.x + hero.width > enemy2.x &&
-   		hero.y < enemy2.y + enemy2.height &&
-   		hero.height + hero.y > enemy2.y
-	) {
-		reset();
-	} else if (
-		hero.x < enemy3.x + enemy3.width &&
-  	 	hero.x + hero.width > enemy3.x &&
-   		hero.y < enemy3.y + enemy3.height &&
-   		hero.height + hero.y > enemy3.y
-	) {
-		reset();
-	};
-
-};
 
 // Draw Stuff
 
 var drawStuff = function() {
-	if (bgReady == true) {
+	if (bgReady) {
 		ctx.drawImage(bgImage, 0, 0)
 	}
 
-	if (heroReady == true) {
+	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y)
-	}
+	} 
 
-	if (enemy1Ready == true) {
-		ctx.drawImage(enemy1Sprite, enemy1.x, enemy1.y)
-	}
-
-	if (enemy2Ready == true) {
-		ctx.drawImage(enemy2Sprite, enemy2.x, enemy2.y)
-	}
-
-	if (enemy3Ready == true) {
-		ctx.drawImage(enemy3Sprite, enemy3.x, enemy3.y)
+	if (enemy1Ready && enemy2Ready && enemy3Ready) {
+		setTimeout(function() {
+			setInterval(function() {
+				if (Math.random() <= 0.33) {
+					ctx.drawImage(enemy1, 2550, hero.y);
+					enemy1.x -= enemy1.speed * modifier
+				}
+			}, 500)
+		}, 5000)
 	}
 }
 
@@ -179,7 +182,7 @@ var main = function () {
 	var now = Date.now();
 	var delta = now - then;
 
-	update(delta / 1000);
+	update(delta / 1000)
 	drawStuff();
 
 	then = now;
@@ -190,6 +193,7 @@ var main = function () {
 // Play
 
 var then = Date.now();
+
 reset();
 main();
 
