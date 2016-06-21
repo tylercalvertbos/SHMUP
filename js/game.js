@@ -45,7 +45,6 @@ heroSprite.onload = function() {
 };
 
 heroSprite.src = '';
-
 // Enemy Sprites
 
 var enemy1Ready = false;
@@ -150,7 +149,7 @@ var update = function (modifier) {
 		
 	}
 	if (82 in keysDown) { // Player reloading
-		location.reload(index.html);
+		location.reload();
 	}
 	if (80 in keysDown) { // Player pausing
 		pauseGame();
