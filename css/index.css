@@ -2,15 +2,7 @@ canvas {
 	position: absolute;
 	background-color: red;
 	z-index: 0;
+	background-size: cover;
+	background-position: center;
 }
 
-#hero {
-	width: 100px;
-	height: 100px;
-	position: absolute;
-	background-color: black;
-	padding-top: 1225;
-	padding-bottom: 1225;
-	z-index: 1;
-	padding-left: 100;
-}
