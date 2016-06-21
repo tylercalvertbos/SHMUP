@@ -16,6 +16,7 @@ $(document).ready(function() {
 var score = 0;
 var highscore = 0;
 
+
 // High score
 
 var newHighscore = score;
@@ -33,7 +34,7 @@ bgImage.onload = function() {
 	bgReady = true;
 };
 
-bgImage.src = '';
+bgImage.src = '../images/background.jpg';
 
 // Hero Sprite
 
@@ -44,7 +45,7 @@ heroSprite.onload = function() {
 	heroReady = true;
 };
 
-heroSprite.src = '';
+heroSprite.src = '../images/hero.png';
 // Enemy Sprites
 
 var enemy1Ready = false;
@@ -88,7 +89,9 @@ bulletSprite.src = '';
 var hero = {
 	speed : 600,
 	x : 0,
-	y : 0
+	y : 0,
+	width: 287,
+	height: 380
 }
 var bullet = {
 	speed : 1500,
@@ -154,6 +157,18 @@ var update = function (modifier) {
 	if (80 in keysDown) { // Player pausing
 		pauseGame();
 	}
+
+	if (hero.x < 0)
+		hero.x = 0;
+
+	if (hero.y < 0) 
+		hero.y = 0;
+
+	if (hero.x + hero.width > canvas.width)
+		hero.x = canvas.width - hero.width;
+
+	if (hero.y + hero.height > canvas.height)
+		hero.y = canvas.height - hero.height;
 }
 
 // Reset Game
@@ -166,23 +181,13 @@ var reset = function() {
 
 var drawStuff = function() {
 	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0)
+		ctx.drawImage(bgImage, 0, 0, window.innerWidth, window.innerHeight);
 	}
 
 	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y)
 	} 
 
-	if (enemy1Ready && enemy2Ready && enemy3Ready) {
-		setTimeout(function() {
-			setInterval(function() {
-				if (Math.random() <= 0.33) {
-					ctx.drawImage(enemy1, 2550, hero.y);
-					enemy1.x -= enemy1.speed * modifier
-				}
-			}, 500)
-		}, 5000)
-	}
 }
 
 // Game Loop
