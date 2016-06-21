@@ -5,8 +5,8 @@ $(document).ready(function() {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
 
-	canvas.width = 2550;
-	canvas.height = 1348;
+	canvas.width = 1225;
+	canvas.height = 674;
 
 	document.body.appendChild(canvas)
 
