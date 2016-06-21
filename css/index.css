@@ -11,8 +11,8 @@ h1 {
 	font-family: '8bit';
 	text-align: center;
 	color: white;
-	font-size: 100px;
-	margin: 100px;
+	font-size: 200px;
+	margin: 200px;
 }
 
 p {
@@ -20,8 +20,8 @@ p {
 	color: white;
 	text-align: center;
 	vertical-align: center;
-	font-size: 25px;
-	margin-top: 250px;
+	font-size: 50px;
+	margin-top: 500px;
 }
 
 a {
@@ -34,6 +34,11 @@ a:hover {
 }
 
 #me {
-	font-size: 12.5px;
-	margin-top: 75px;
+	font-size: 25px;
+	margin-top: 150px;
+}
+
+body {
+	width: 100%;
+	height: 100%;
 }

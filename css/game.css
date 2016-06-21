@@ -5,3 +5,8 @@ html {
 canvas {
 	background-color: red;
 }
+
+body {
+	width: 100%;
+	height: 100%;
+}
