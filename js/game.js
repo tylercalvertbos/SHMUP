@@ -14,6 +14,15 @@ $(document).ready(function() {
 // Define Variables
 
 var score = 0;
+var highscore = 0;
+
+// High score
+
+var newHighscore = score;
+
+if (newHighscore > highscore) {
+	highscore = newHighscore;
+}
 
 // Background Image
 
@@ -24,7 +33,7 @@ bgImage.onload = function() {
 	bgReady = true;
 };
 
-bgImage.src = 'images/sealion.jpg';
+bgImage.src = '';
 
 // Hero Sprite
 
@@ -35,7 +44,7 @@ heroSprite.onload = function() {
 	heroReady = true;
 };
 
-heroSprite.src = 'images/hero.png';
+heroSprite.src = '';
 
 // Enemy Sprites
 
@@ -46,7 +55,7 @@ enemy1Sprite.onload = function() {
 	enemy1Ready = false;
 };
 
-enemy1Sprite.src = 'images/enemy1.png';
+enemy1Sprite.src = '';
 
 var enemy2Ready = false;
 var enemy2Sprite = new Image();
@@ -55,7 +64,7 @@ enemy1Sprite.onload = function() {
 	enemy2Ready = false;
 };
 
-enemy2Sprite.src = 'images/enemy2.png';
+enemy2Sprite.src = '';
 
 var enemy3Ready = false;
 var enemy3Sprite = new Image();
@@ -64,7 +73,7 @@ enemy3Sprite.onload = function() {
 	enemy3Ready = false;
 };
 
-enemy3Sprite.src = 'images/enemy3.png';
+enemy3Sprite.src = '';
 
 var bulletReady = false;
 var bulletSprite = new Image();
