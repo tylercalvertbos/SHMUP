@@ -5,6 +5,7 @@
 
 html {
 	background: black;
+	overflow: hidden;
 }
 
 h1 {
