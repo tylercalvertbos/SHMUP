@@ -15,6 +15,7 @@ $(document).ready(function() {
 
 var score = 0;
 var highscore = 0;
+var lives = 3;
 
 
 // High score
@@ -136,16 +137,16 @@ addEventListener("keyup", function (e) {
 }, false);
 
 var update = function (modifier) {
-	if (87 in keysDown) { // Player holding up
+	if (input.w) { // Player holding up
 		hero.y -= hero.speed * modifier;
 	}
-	if (83 in keysDown) { // Player holding down
+	if (input.s) { // Player holding down
 		hero.y += hero.speed * modifier;
 	}
-	if (65 in keysDown) { // Player holding left
+	if (input.a) { // Player holding left
 		hero.x -= hero.speed * modifier;
 	}
-	if (68 in keysDown) { // Player holding right
+	if (input.d) { // Player holding right
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
@@ -169,6 +170,7 @@ var update = function (modifier) {
 
 	if (hero.y + hero.height > canvas.height)
 		hero.y = canvas.height - hero.height;
+
 }
 
 // Reset Game
@@ -186,8 +188,9 @@ var drawStuff = function() {
 
 	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y)
-	} 
+	}
 
+	ctx.rect(100,100, 20,20);
 }
 
 // Game Loop
