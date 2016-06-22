@@ -34,7 +34,7 @@ bgImage.onload = function() {
 	bgReady = true;
 };
 
-bgImage.src = 'background.jpg';
+bgImage.src = 'images/background.jpg';
 
 // Hero Sprite
 
@@ -45,7 +45,7 @@ heroSprite.onload = function() {
 	heroReady = true;
 };
 
-heroSprite.src = 'hero.png';
+heroSprite.src = 'images/hero.png';
 // Enemy Sprites
 
 var enemy1Ready = false;
