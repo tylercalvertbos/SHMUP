@@ -9,12 +9,24 @@
 <body>
 
 	<script type='text/javascript'>
-		$(document).ready(function() {
+		
+$(document).ready(function() {
 
-			$('html').css('background-image', 'url(start.png)')
-			$('html').css('background-size', '100% 100%')
+	$('html').css('background-image', 'url(start.png)')
+	$('html').css('background-size', '100% 100%')
+	
+})
 
-		})
+
+window.addEventListener('keypress', checkKeyPressed, false);
+
+function checkKeyPressed(e) {
+	if ( e.keyCode == 32) {
+		window.location.replace('game.html');
+	}
+}
+
+
 	</script>
 
 </body>
