@@ -84,7 +84,7 @@ bulletSprite.onload = function() {
 	bulletReady = true;
 }
 
-bulletSprite.src = 'images/bullet.gif';
+bulletSprite.src = 'images/ship/bullet.png';
 
 var enemy4Ready = false;
 var enemy4Sprite = new Image();
@@ -93,7 +93,7 @@ enemy4Sprite.onload = function() {
 	enemy3Ready = false;
 };
 
-enemy4Sprite.src = '';
+enemy4Sprite.src = 'images/enemy4/enemy4.png';
 
 // Objects
 
@@ -106,8 +106,8 @@ var hero = {
 }
 var bullet = {
 	speed : 1500,
-	x :  hero.x + (hero.width / 2) - hero.width,
-	y :  hero.y + (hero.height / 2) - hero.height
+	x : 0,
+	y : 0
 }
 
 var enemy1 = {
@@ -130,9 +130,6 @@ var enemy3 = {
 
 // Pause
 
-var pauseGame = function() {
-
-}
 
 // Player Input
 
@@ -160,7 +157,7 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-		
+
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
@@ -169,22 +166,21 @@ var update = function (modifier) {
 		pauseGame();
 	}
 
-	if (hero.x < 0)
+	if (hero.x < 0) {
 		hero.x = 0;
-
-	if (hero.y < 0) 
+	}
+	if (hero.y < 0) { 
 		hero.y = 0;
-
-	if (hero.x + hero.width > canvas.width)
+	}
+	if (hero.x + hero.width > canvas.width) {
 		hero.x = canvas.width - hero.width;
-
-	if (hero.y + hero.height > canvas.height)
+	}
+	if (hero.y + hero.height > canvas.height) {
 		hero.y = canvas.height - hero.height;
-
+	}
 }
 
 // Shoot
-
 
 // Reset Game
 
@@ -201,6 +197,9 @@ var drawStuff = function() {
 
 	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y, 100, 100)
+	}
+	if (enemy1Ready) {
+		ctx.drawImage(enemy1Sprite, enemy1.x, enemy1.y)
 	}
 }
 
