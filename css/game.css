@@ -15,3 +15,17 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+@font-face {
+	font-family: '8bit';
+	src: url('../fonts/8bit.TTF');
+}
+
+div {
+	position: absolute;
+	font-size: 200%;
+	font-family: '8bit';
+	color: white;
+	text-align: center;
+	margin-left: 47.5%
+}

@@ -13,19 +13,12 @@ $(document).ready(function() {
 
 // Define Variables
 
-var score = 0;
+window.onload = function() {
+	var score = 0;
+}
 var highscore = 0;
 var lives = 3;
 var bullets = new Array();
-
-
-// High score
-
-var newHighscore = score;
-
-if (newHighscore > highscore) {
-	highscore = newHighscore;
-}
 
 // Background Image
 
@@ -101,8 +94,8 @@ var hero = {
 	speed : 600,
 	x : 0,
 	y : 0,
-	width: 34,
-	height: 36
+	width: 100,
+	height: 100
 }
 var bullet = {
 	speed : 1500,
@@ -113,19 +106,29 @@ var bullet = {
 var enemy1 = {
 	speed : 256,
 	x : 0,
-	y : 0
+	y : 0,
+	scorePerKill : 50
 }
 
 var enemy2 = {
 	speed : 512,
 	x : 0,
-	y : 0
+	y : 0,
+	scorePerKill : 100
 }
-
+	
 var enemy3 = {
 	speed : 384,
 	x : 0,
-	y : 0
+	y : 0,
+	scorePerKill : 75
+}
+
+var enemy4 = {
+	speed: 128,
+	x : 0,
+	y : 0,
+	scorePerKill : 25
 }
 
 // Pause
@@ -157,13 +160,13 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-
+			ctx.clearRect(hero.x, hero.y, 100, 100);
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
 	}
 	if (80 in keysDown) { // Player pausing
-		pauseGame();
+		score += 097;
 	}
 
 	if (hero.x < 0) {
@@ -178,6 +181,45 @@ var update = function (modifier) {
 	if (hero.y + hero.height > canvas.height) {
 		hero.y = canvas.height - hero.height;
 	}
+
+	if (hero.x < enemy1.x + enemy1.width && hero.x + hero.width > enemy1.x && hero.y < enemy1.y + enemy1.height && hero.height + hero.y > enemy1.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+	if (hero.x < enemy3.x + enemy3.width && hero.x + hero.width > enemy3.x && hero.y < enemy3.y + enemy3.height && hero.height + hero.y > enemy3.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+	if (hero.x < enemy4.x + enemy4.width && hero.x + hero.width > enemy4.x && hero.y < enemy4.y + enemy4.height && hero.height + hero.y > enemy4.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
+		lives -= 1;
+		hero.y = canvas.height / 2.75;
+		hero.x = 0;
+	}
+
+$('div').html('SCORE<br><br>' + score);
+
 }
 
 // Shoot
@@ -186,6 +228,7 @@ var update = function (modifier) {
 
 var reset = function() {
 	hero.y = canvas.height / 2.75;
+	score = 0;
 }
 
 // Draw Stuff
@@ -201,6 +244,7 @@ var drawStuff = function() {
 	if (enemy1Ready) {
 		ctx.drawImage(enemy1Sprite, enemy1.x, enemy1.y)
 	}
+
 }
 
 // Game Loop
