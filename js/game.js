@@ -16,6 +16,7 @@ $(document).ready(function() {
 var score = 0;
 var highscore = 0;
 var lives = 3;
+var bullets = new Array();
 
 
 // High score
@@ -83,7 +84,7 @@ bulletSprite.onload = function() {
 	bulletReady = true;
 }
 
-bulletSprite.src = '';
+bulletSprite.src = 'images/bullet.gif';
 
 // Objects
 
@@ -96,8 +97,8 @@ var hero = {
 }
 var bullet = {
 	speed : 1500,
-	x : 0,
-	y : 0
+	x :  hero.x + (hero.width / 2) - hero.width,
+	y :  hero.y + (hero.height / 2) - hero.height
 }
 
 var enemy1 = {
@@ -137,20 +138,20 @@ addEventListener("keyup", function (e) {
 }, false);
 
 var update = function (modifier) {
-	if (input.w) { // Player holding up
+	if (87 in keysDown) { // Player holding up
 		hero.y -= hero.speed * modifier;
 	}
-	if (input.s) { // Player holding down
+	if (83 in keysDown) { // Player holding down
 		hero.y += hero.speed * modifier;
 	}
-	if (input.a) { // Player holding left
+	if (65 in keysDown) { // Player holding left
 		hero.x -= hero.speed * modifier;
 	}
-	if (input.d) { // Player holding right
+	if (68 in keysDown) { // Player holding right
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-		
+		shoot();
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
@@ -173,6 +174,12 @@ var update = function (modifier) {
 
 }
 
+// Shoot
+
+var shoot = function() {
+	bullets.push(bullet);
+};
+
 // Reset Game
 
 var reset = function() {
@@ -190,7 +197,11 @@ var drawStuff = function() {
 		ctx.drawImage(heroSprite, hero.x, hero.y)
 	}
 
-	ctx.rect(100,100, 20,20);
+	if (bulletReady) {
+	for (i = 0; i < bullets.length; i++) {
+			ctx.drawImage(bulletSprite, bullet.x, bullet.y);
+		}
+	}
 }
 
 // Game Loop
