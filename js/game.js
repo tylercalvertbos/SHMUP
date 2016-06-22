@@ -16,9 +16,14 @@ $(document).ready(function() {
 window.onload = function() {
 	var score = 0;
 }
-var highscore = 0;
+
 var lives = 3;
-var bullets = new Array();
+var shots = [];
+var keysDown = {};
+
+// Bullets
+
+
 
 // Background Image
 
@@ -47,7 +52,7 @@ var enemy1Ready = false;
 var enemy1Sprite = new Image();
 
 enemy1Sprite.onload = function() {
-	enemy1Ready = false;
+	enemy1Ready = true;
 };
 
 enemy1Sprite.src = 'images/enemy1/enemy1.png';
@@ -56,7 +61,7 @@ var enemy2Ready = false;
 var enemy2Sprite = new Image();
 
 enemy1Sprite.onload = function() {
-	enemy2Ready = false;
+	enemy2Ready = true;
 };
 
 enemy2Sprite.src = 'images/enemy2/enemy2.png';
@@ -65,7 +70,7 @@ var enemy3Ready = false;
 var enemy3Sprite = new Image();
 
 enemy3Sprite.onload = function() {
-	enemy3Ready = false;
+	enemy3Ready = true;
 };
 
 enemy3Sprite.src = 'images/enemy3/enemy3.png';
@@ -83,10 +88,19 @@ var enemy4Ready = false;
 var enemy4Sprite = new Image();
 
 enemy4Sprite.onload = function() {
-	enemy3Ready = false;
+	enemy3Ready = true;
 };
 
 enemy4Sprite.src = 'images/enemy4/enemy4.png';
+
+var eBulletReady = false;
+var eBulletSprite = new Image();
+
+eBulletSprite.onload = function() {
+	eBulletReady = true;
+}
+
+eBulletSprite.src = 'images/eBullet.png';
 
 // Objects
 
@@ -94,13 +108,17 @@ var hero = {
 	speed : 600,
 	x : 0,
 	y : 0,
-	width: 100,
-	height: 100
+	width : 100,
+	height : 100,
+	shoot : function () {
+}
 }
 var bullet = {
 	speed : 1500,
-	x : 0,
-	y : 0
+	x : hero.x / 2,
+	y : hero.y / 2,
+	width : 56,
+	height : 36
 }
 
 var enemy1 = {
@@ -131,12 +149,16 @@ var enemy4 = {
 	scorePerKill : 25
 }
 
+var eBullet = {
+	speed : 1500,
+	x : 0,
+	y : 0
+}
 // Pause
 
 
 // Player Input
 
-var keysDown = {};
 
 addEventListener("keydown", function (e) {
 	keysDown[e.keyCode] = true;
@@ -160,13 +182,13 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-			ctx.clearRect(hero.x, hero.y, 100, 100);
+		hero.shoot();
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
 	}
 	if (80 in keysDown) { // Player pausing
-		score += 097;
+		score += 5867097;
 	}
 
 	if (hero.x < 0) {
@@ -206,23 +228,20 @@ var update = function (modifier) {
 		hero.x = 0;
 	}
 
-	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
+	if (bullet.x < enemy1.x + enemy1.width && bullet.x + bullet.width > enemy1.x && bullet.y < enemy1.y + enemy1.height && bullet.height + bullet.y > enemy1.y) {
 		lives -= 1;
 		hero.y = canvas.height / 2.75;
 		hero.x = 0;
 	}
 
-	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
+	if (hero.x < eBullet.x + eBullet.width && hero.x + hero.width > eBullet.x && hero.y < eBullet.y + eBullet.height && hero.height + hero.y > eBullet.y) {
 		lives -= 1;
 		hero.y = canvas.height / 2.75;
 		hero.x = 0;
 	}
 
 $('div').html('SCORE<br><br>' + score);
-
 }
-
-// Shoot
 
 // Reset Game
 
@@ -241,13 +260,12 @@ var drawStuff = function() {
 	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y, 100, 100)
 	}
-	if (enemy1Ready) {
-		ctx.drawImage(enemy1Sprite, enemy1.x, enemy1.y)
-	}
+
 
 }
 
 // Game Loop
+
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
