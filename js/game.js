@@ -36,7 +36,7 @@ bgImage.onload = function() {
 	bgReady = true;
 };
 
-bgImage.src = 'images/background.jpg';
+bgImage.src = 'images/background.png';
 
 // Hero Sprite
 
@@ -47,7 +47,7 @@ heroSprite.onload = function() {
 	heroReady = true;
 };
 
-heroSprite.src = 'images/hero.png';
+heroSprite.src = 'images/ship/ship.png';
 // Enemy Sprites
 
 var enemy1Ready = false;
@@ -57,7 +57,7 @@ enemy1Sprite.onload = function() {
 	enemy1Ready = false;
 };
 
-enemy1Sprite.src = '';
+enemy1Sprite.src = 'images/enemy1/enemy1.png';
 
 var enemy2Ready = false;
 var enemy2Sprite = new Image();
@@ -66,7 +66,7 @@ enemy1Sprite.onload = function() {
 	enemy2Ready = false;
 };
 
-enemy2Sprite.src = '';
+enemy2Sprite.src = 'images/enemy2/enemy2.png';
 
 var enemy3Ready = false;
 var enemy3Sprite = new Image();
@@ -75,7 +75,7 @@ enemy3Sprite.onload = function() {
 	enemy3Ready = false;
 };
 
-enemy3Sprite.src = '';
+enemy3Sprite.src = 'images/enemy3/enemy3.png';
 
 var bulletReady = false;
 var bulletSprite = new Image();
@@ -86,14 +86,23 @@ bulletSprite.onload = function() {
 
 bulletSprite.src = 'images/bullet.gif';
 
+var enemy4Ready = false;
+var enemy4Sprite = new Image();
+
+enemy4Sprite.onload = function() {
+	enemy3Ready = false;
+};
+
+enemy4Sprite.src = '';
+
 // Objects
 
 var hero = {
 	speed : 600,
 	x : 0,
 	y : 0,
-	width: 287,
-	height: 380
+	width: 34,
+	height: 36
 }
 var bullet = {
 	speed : 1500,
@@ -151,7 +160,7 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-		shoot();
+		
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
@@ -176,9 +185,6 @@ var update = function (modifier) {
 
 // Shoot
 
-var shoot = function() {
-	bullets.push(bullet);
-};
 
 // Reset Game
 
@@ -194,13 +200,7 @@ var drawStuff = function() {
 	}
 
 	if (heroReady) {
-		ctx.drawImage(heroSprite, hero.x, hero.y)
-	}
-
-	if (bulletReady) {
-	for (i = 0; i < bullets.length; i++) {
-			ctx.drawImage(bulletSprite, bullet.x, bullet.y);
-		}
+		ctx.drawImage(heroSprite, hero.x, hero.y, 100, 100)
 	}
 }
 
