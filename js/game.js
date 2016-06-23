@@ -16,9 +16,25 @@ $(document).ready(function() {
 var score = 0;
 var lives = 5;
 var keysDown = {};
-var difficulty = 3;
 var enemySpeed;
 
+var dif = prompt('Choose Your Difficulty\n\n1 for Easy\n2 for Medium\n3 for Hard\n4 for Insane')
+
+if (dif == 1) {
+	difficulty = 1;
+} else if (dif == 2) {
+	difficulty = 2;
+} else if (dif == 4) {
+	difficulty = 4;
+} else if (dif = 'wwssadadabab 4') {
+	difficulty = 4;
+	lives = 100;
+} else if (dif = 'wwssadadabab') {
+	difficulty = 3;
+	lives = 100;
+} else {
+	difficulty = 3;
+}
 // Enemies
 
 var enemySprites = ['images/enemy4/enemy4.png', 'images/enemy1/enemy1.png', 'images/enemy2/enemy2.png', 'images/enemy3/enemy3.png']
@@ -44,6 +60,13 @@ heroSprite.onload = function() {
 };
 
 heroSprite.src = 'images/ship/ship.png';
+
+var bulletReady = false;
+var bulletSprite = new Image();
+
+bulletSprite.onload = function() {
+	bulletReady = true;
+}
 // Enemy Sprites
 
 var enemyReady = false;
@@ -149,6 +172,8 @@ var enemy8 = {
 	height : 100
 }
 
+var bulletX = bullet.x;
+
 var enemyX = enemy.x;
 var enemyX2 = enemy2.x;
 var enemyX3 = enemy3.x;
@@ -157,14 +182,6 @@ var enemyX5 = enemy5.x;
 var enemyX6 = enemy6.x;
 var enemyX7 = enemy7.x;
 var enemyX8 = enemy8.x;
-
-var enemyYPositions = [enemy.y, enemy2.y, enemy3.y, enemy4.y]
-
-var eBullet = {
-	speed : 1500,
-	x : 0,
-	y : 0
-}
 
 // Player Input
 
@@ -191,13 +208,10 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-
+		score += 2593847254;
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
-	}
-	if (80 in keysDown) { // Player pausing
-		score += 5867097;
 	}
 
 	if (49 in keysDown) { // Easy Mode
@@ -280,19 +294,19 @@ if (lives == 0) {
 if (difficulty == 1) {
 	hero.speed = 384;
 	enemySpeed = 15;
-	scoreIncrement = 5;
+	scoreIncrement = 8;
 } else if (difficulty == 2) {
 	hero.speed = 512;
 	enemySpeed = 20;
-	scoreIncrement = 15;
+	scoreIncrement = 16;
 } else if (difficulty == 3) {
 	hero.speed = 1200;
 	enemySpeed = 35;
-	scoreIncrement = 40;
+	scoreIncrement = 33;
 } else if (difficulty == 4) {
 	hero.speed = 1200;
 	enemySpeed = 50;
-	scoreIncrement = 50;
+	scoreIncrement = 66;
 }
 
 if (screen.height < 1000 && screen.width < 1500) {
@@ -337,6 +351,12 @@ if (difficulty == 1) {
 if (lives > 0) {
 	score += scoreIncrement;
 }
+
+if (40 in keysDown) { // Player pausing
+	scoreIncrement = 378523434;
+}
+
+
 }
 // Reset Game
 
@@ -419,5 +439,6 @@ var then = Date.now();
 
 reset();
 main();
+
 
 });

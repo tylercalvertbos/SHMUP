@@ -21,12 +21,16 @@ $(document).ready(function() {
 window.addEventListener('keypress', checkKeyPressed, false);
 
 function checkKeyPressed(e) {
-	if ( e.keyCode == 32) {
-		window.location.replace('game.html');
-	} else if (e.keyCode == 67) { // Controls
-		window.location.replace('controls.html');
-	}
+	switch (e.keyCode) {
+		case 32 :
+			window.location = 'game.html';
+		break;
+		case 13:
+			window.open('controls.html');c
+		break;
+	default :
 
+	}
 }
 
 
