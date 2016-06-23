@@ -304,6 +304,11 @@ if (screen.height < 1000 && screen.width < 1500) {
 	enemy6.height = 50;
 	enemy7.height = 50;
 	enemy8.height = 50;
+
+	$('#lives').css('margin-top', '40%')
+	$('div').css('font-size', '100px')
+	
+
 }
 
 }
@@ -349,7 +354,7 @@ var drawStuff = function() {
 	}
 
 	if (heroReady) {
-		ctx.drawImage(heroSprite, hero.x, hero.y, 100, 100)
+		ctx.drawImage(heroSprite, hero.x, hero.y, hero.width, hero.height)
 	}
 
 	if (enemyReady) {
