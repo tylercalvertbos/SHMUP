@@ -26,10 +26,10 @@ if (dif == 1) {
 	difficulty = 2;
 } else if (dif == 4) {
 	difficulty = 4;
-} else if (dif = 'wwssadadabab 4') {
+} else if (dif == 'wwssadadabab 4') {
 	difficulty = 4;
 	lives = 100;
-} else if (dif = 'wwssadadabab') {
+} else if (dif == 'wwssadadabab') {
 	difficulty = 3;
 	lives = 100;
 } else {
@@ -309,7 +309,7 @@ if (difficulty == 1) {
 	scoreIncrement = 66;
 }
 
-if (screen.height < 1000 && screen.width < 1500) {
+if (screen.height < 1200 && screen.width < 2000) {
 	hero.width = 50;
 	enemy.width = 50;
 	enemy2.width = 50;
