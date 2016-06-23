@@ -21,7 +21,7 @@ var lives = 3;
 var shots = [];
 var keysDown = {};
 
-// Bullets
+// Enemies
 
 
 
@@ -48,50 +48,14 @@ heroSprite.onload = function() {
 heroSprite.src = 'images/ship/ship.png';
 // Enemy Sprites
 
-var enemy1Ready = false;
-var enemy1Sprite = new Image();
+var enemyReady = false;
+var enemySprite = new Image();
 
-enemy1Sprite.onload = function() {
-	enemy1Ready = true;
+enemySprite.onload = function() {
+	enemyReady = true;
 };
 
-enemy1Sprite.src = 'images/enemy1/enemy1.png';
-
-var enemy2Ready = false;
-var enemy2Sprite = new Image();
-
-enemy1Sprite.onload = function() {
-	enemy2Ready = true;
-};
-
-enemy2Sprite.src = 'images/enemy2/enemy2.png';
-
-var enemy3Ready = false;
-var enemy3Sprite = new Image();
-
-enemy3Sprite.onload = function() {
-	enemy3Ready = true;
-};
-
-enemy3Sprite.src = 'images/enemy3/enemy3.png';
-
-var bulletReady = false;
-var bulletSprite = new Image();
-
-bulletSprite.onload = function() {
-	bulletReady = true;
-}
-
-bulletSprite.src = 'images/ship/bullet.png';
-
-var enemy4Ready = false;
-var enemy4Sprite = new Image();
-
-enemy4Sprite.onload = function() {
-	enemy3Ready = true;
-};
-
-enemy4Sprite.src = 'images/enemy4/enemy4.png';
+enemySprite.src = 'images/enemy4/enemy4.png';
 
 var eBulletReady = false;
 var eBulletSprite = new Image();
@@ -109,9 +73,7 @@ var hero = {
 	x : 0,
 	y : 0,
 	width : 100,
-	height : 100,
-	shoot : function () {
-}
+	height : 100
 }
 var bullet = {
 	speed : 1500,
@@ -121,32 +83,9 @@ var bullet = {
 	height : 36
 }
 
-var enemy1 = {
-	speed : 256,
+var enemy = {
 	x : 0,
-	y : 0,
-	scorePerKill : 50
-}
-
-var enemy2 = {
-	speed : 512,
-	x : 0,
-	y : 0,
-	scorePerKill : 100
-}
-	
-var enemy3 = {
-	speed : 384,
-	x : 0,
-	y : 0,
-	scorePerKill : 75
-}
-
-var enemy4 = {
-	speed: 128,
-	x : 0,
-	y : 0,
-	scorePerKill : 25
+	y : 0
 }
 
 var eBullet = {
@@ -182,10 +121,10 @@ var update = function (modifier) {
 		hero.x += hero.speed * modifier;
 	}
 	if (191 in keysDown) { // Player firing
-		hero.shoot();
+
 	}
 	if (82 in keysDown) { // Player reloading
-		location.reload();
+		update();
 	}
 	if (80 in keysDown) { // Player pausing
 		score += 5867097;
@@ -204,50 +143,28 @@ var update = function (modifier) {
 		hero.y = canvas.height - hero.height;
 	}
 
-	if (hero.x < enemy1.x + enemy1.width && hero.x + hero.width > enemy1.x && hero.y < enemy1.y + enemy1.height && hero.height + hero.y > enemy1.y) {
+	if (hero.x < enemy.x + 100 && hero.x + 100 > enemy.x && hero.y < enemy.y + 100 && 100 + hero.y > enemy.y) {
 		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
-	}
-
-	if (hero.x < enemy2.x + enemy2.width && hero.x + hero.width > enemy2.x && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
-		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
-	}
-
-	if (hero.x < enemy3.x + enemy3.width && hero.x + hero.width > enemy3.x && hero.y < enemy3.y + enemy3.height && hero.height + hero.y > enemy3.y) {
-		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
-	}
-
-	if (hero.x < enemy4.x + enemy4.width && hero.x + hero.width > enemy4.x && hero.y < enemy4.y + enemy4.height && hero.height + hero.y > enemy4.y) {
-		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
-	}
-
-	if (bullet.x < enemy1.x + enemy1.width && bullet.x + bullet.width > enemy1.x && bullet.y < enemy1.y + enemy1.height && bullet.height + bullet.y > enemy1.y) {
-		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
-	}
-
-	if (hero.x < eBullet.x + eBullet.width && hero.x + hero.width > eBullet.x && hero.y < eBullet.y + eBullet.height && hero.height + hero.y > eBullet.y) {
-		lives -= 1;
-		hero.y = canvas.height / 2.75;
-		hero.x = 0;
+		reset();
 	}
 
 $('div').html('SCORE<br><br>' + score);
+$('#lives').html(lives + '<br><br>LIVES')
+
+
 }
+
+// Score
+
 
 // Reset Game
 
 var reset = function() {
 	hero.y = canvas.height / 2.75;
 	score = 0;
+
+	enemy.x = 0;
+	enemy.y = (Math.random() * canvas.height)
 }
 
 // Draw Stuff
@@ -261,8 +178,12 @@ var drawStuff = function() {
 		ctx.drawImage(heroSprite, hero.x, hero.y, 100, 100)
 	}
 
-
+	if (enemyReady) {
+			ctx.drawImage(enemySprite, enemy.x, enemy.y, 100, 100)
+		}
+	}
 }
+
 
 // Game Loop
 
