@@ -306,7 +306,7 @@ if (screen.height < 1000 && screen.width < 1500) {
 	enemy8.height = 50;
 
 	$('#lives').css('margin-top', '40%')
-	$('div').css('font-size', '100px')
+	$('div').css('font-size', '10pxpx')
 	
 
 }
