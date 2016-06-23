@@ -16,7 +16,7 @@ $(document).ready(function() {
 var score = 0;
 var lives = 5;
 var keysDown = {};
-var difficulty = 2;
+var difficulty = 3;
 var scoreIncrement;
 var enemySpeed;
 
@@ -201,6 +201,22 @@ var update = function (modifier) {
 		score += 5867097;
 	}
 
+	if (49 in keysDown) { // Easy Mode
+		difficulty = 1;
+	}
+
+	if (50 in keysDown) { // Medium Mode
+		difficulty = 2;
+	}
+
+	if (51 in keysDown) { // Hard Mode
+		difficulty = 3;
+	}
+
+	if (52 in keysDown) { // Insane Mode
+		difficulty = 4;
+	}
+
 	if (hero.x < 0) {
 		hero.x = 0;
 	}
@@ -275,12 +291,12 @@ if (difficulty == 1) {
 	enemySpeed = 20;
 	scoreIncrement = 15;
 } else if (difficulty == 3) {
-	hero.speed = 720;
+	hero.speed = 1200;
 	enemySpeed = 35;
 	scoreIncrement = 40;
 } else if (difficulty == 4) {
 	hero.speed = 1200;
-	enemySpeed = 43;
+	enemySpeed = 50;
 	scoreIncrement = 50;
 }
 
@@ -305,11 +321,27 @@ if (screen.height < 1000 && screen.width < 1500) {
 	enemy7.height = 50;
 	enemy8.height = 50;
 
-	$('#lives').css('margin-top', '40%')
-	$('div').css('font-size', '10pxpx')
+	$('#lives').css('margin-top', '45%')
+	$('div').css('font-size', '10px')
 	
 
-}
+if (difficulty == 1) {
+	hero.speed = 128;
+	enemySpeed = 7.5;
+	scoreIncrement = 5;
+} else if (difficulty == 2) {
+	hero.speed = 256;
+	enemySpeed = 10;
+	scoreIncrement = 15;
+} else if (difficulty == 3) {
+	hero.speed = 600;
+	enemySpeed = 17.5;
+	scoreIncrement = 40;
+} else if (difficulty == 4) {
+	hero.speed = 600;
+	enemySpeed = 25;
+	scoreIncrement = 50;
+}}
 
 }
 
