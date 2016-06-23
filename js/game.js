@@ -330,7 +330,7 @@ if (screen.height < 1200 && screen.width < 2000) {
 	enemy7.height = 50;
 	enemy8.height = 50;
 
-	$('#lives').css('margin-top', '45%')
+	$('#lives').css('margin-top', '43%')
 	$('div').css('font-size', '20%px')
 	
 
