@@ -343,6 +343,10 @@ if (difficulty == 1) {
 	scoreIncrement = 50;
 }}
 
+if (lives > 0 ) {
+	score += scoreIncrement;
+}
+
 }
 
 // Reset Game
