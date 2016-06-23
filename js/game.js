@@ -98,56 +98,56 @@ var bullet = {
 var enemy = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy2 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy3 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy4 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 var enemy5 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy6 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy7 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemy8 = {
 	x : screen.width - hero.width,
 	y : 0,
-	width = 100,
-	height = 100
+	width : 100,
+	height : 100
 }
 
 var enemyX = enemy.x;
