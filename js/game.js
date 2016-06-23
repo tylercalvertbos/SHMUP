@@ -5,8 +5,8 @@ $(document).ready(function() {
 	var canvas = document.createElement('canvas');
 	var ctx = canvas.getContext('2d');
 
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	canvas.width = screen.width;
+	canvas.height = screen.height;
 
 	document.body.appendChild(canvas)
 
@@ -96,42 +96,58 @@ var bullet = {
 }
 
 var enemy = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy2 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy3 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy4 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 var enemy5 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy6 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy7 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemy8 = {
-	x : window.innerWidth - hero.width,
-	y : 0
+	x : screen.width - hero.width,
+	y : 0,
+	width = 100,
+	height = 100
 }
 
 var enemyX = enemy.x;
@@ -268,20 +284,42 @@ if (difficulty == 1) {
 	scoreIncrement = 50;
 }
 
+if (screen.height < 1000 && screen.width < 1500) {
+	hero.width = 50;
+	enemy.width = 50;
+	enemy2.width = 50;
+	enemy3.width = 50;
+	enemy4.width = 50;
+	enemy5.width = 50;
+	enemy6.width = 50;
+	enemy7.width = 50;
+	enemy8.width = 50;
+
+	hero.height = 50;
+	enemy.height = 50;
+	enemy2.height = 50;
+	enemy3.height = 50;
+	enemy4.height = 50;
+	enemy5.height = 50;
+	enemy6.height = 50;
+	enemy7.height = 50;
+	enemy8.height = 50;
+}
+
 }
 
 // Reset Game
 
 var reset = function() {
 
-	enemy.y = (Math.random() * window.innerHeight)
-	enemy2.y = (Math.random() * window.innerHeight)
-	enemy3.y = (Math.random() * window.innerHeight)
-	enemy4.y = (Math.random() * window.innerHeight)
-	enemy5.y = (Math.random() * window.innerHeight)
-	enemy6.y = (Math.random() * window.innerHeight)
-	enemy7.y = (Math.random() * window.innerHeight)
-	enemy8.y = (Math.random() * window.innerHeight)
+	enemy.y = (Math.random() * screen.height)
+	enemy2.y = (Math.random() * screen.height)
+	enemy3.y = (Math.random() * screen.height)
+	enemy4.y = (Math.random() * screen.height)
+	enemy5.y = (Math.random() * screen.height)
+	enemy6.y = (Math.random() * screen.height)
+	enemy7.y = (Math.random() * screen.height)
+	enemy8.y = (Math.random() * screen.height)
 
 	enemyX = enemy.x;
 	enemyX2 = enemy2.x;
@@ -307,7 +345,7 @@ var drawStuff = function() {
 	enemyX8 = enemyX8 - enemySpeed;
 	
 	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0, window.innerWidth, window.innerHeight);
+		ctx.drawImage(bgImage, 0, 0, screen.width, screen.height);
 	}
 
 	if (heroReady) {
@@ -315,14 +353,14 @@ var drawStuff = function() {
 	}
 
 	if (enemyReady) {
-			ctx.drawImage(enemySprite, enemyX, enemy.y, 100, 100)
-			ctx.drawImage(enemy2Sprite, enemyX2, enemy2.y, 100, 100)
-			ctx.drawImage(enemy3Sprite, enemyX3, enemy3.y, 100, 100)
-			ctx.drawImage(enemy4Sprite, enemyX4, enemy4.y, 100, 100)
-			ctx.drawImage(enemy5Sprite, enemyX5, enemy5.y, 100, 100)
-			ctx.drawImage(enemy6Sprite, enemyX6, enemy6.y, 100, 100)
-			ctx.drawImage(enemy7Sprite, enemyX7, enemy7.y, 100, 100)
-			ctx.drawImage(enemy8Sprite, enemyX8, enemy8.y, 100, 100)
+			ctx.drawImage(enemySprite, enemyX, enemy.y, enemy.width, enemy.height)
+			ctx.drawImage(enemy2Sprite, enemyX2, enemy2.y, enemy2.width, enemy2.height)
+			ctx.drawImage(enemy3Sprite, enemyX3, enemy3.y, enemy3.width, enemy3.height)
+			ctx.drawImage(enemy4Sprite, enemyX4, enemy4.y, enemy4.width, enemy4.height)
+			ctx.drawImage(enemy5Sprite, enemyX5, enemy5.y, enemy5.width, enemy5.height)
+			ctx.drawImage(enemy6Sprite, enemyX6, enemy6.y, enemy6.width, enemy6.height)
+			ctx.drawImage(enemy7Sprite, enemyX7, enemy7.y, enemy7.width, enemy7.height)
+			ctx.drawImage(enemy8Sprite, enemyX8, enemy8.y, enemy8.width, enemy8.height)
 		}
 
 	if (enemyX < 0) {
