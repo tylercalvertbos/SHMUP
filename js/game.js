@@ -17,7 +17,6 @@ var score = 0;
 var lives = 5;
 var keysDown = {};
 var difficulty = 3;
-var scoreIncrement;
 var enemySpeed;
 
 // Enemies
@@ -270,10 +269,6 @@ var update = function (modifier) {
 		reset();
 	}
 
-if (lives > 0 ) {
-	score += scoreIncrement;
-}
-
 $('div').html('SCORE<br><br>' + score);
 $('#lives').html(lives + '<br><br>LIVES')
 
@@ -283,7 +278,7 @@ if (lives == 0) {
 }
 
 if (difficulty == 1) {
-	hero.speed = 256;
+	hero.speed = 384;
 	enemySpeed = 15;
 	scoreIncrement = 5;
 } else if (difficulty == 2) {
@@ -326,29 +321,23 @@ if (screen.height < 1000 && screen.width < 1500) {
 	
 
 if (difficulty == 1) {
-	hero.speed = 128;
-	enemySpeed = 7.5;
-	scoreIncrement = 5;
-} else if (difficulty == 2) {
 	hero.speed = 256;
+	enemySpeed = 7.5;
+} else if (difficulty == 2) {
+	hero.speed = 384;
 	enemySpeed = 10;
-	scoreIncrement = 15;
 } else if (difficulty == 3) {
 	hero.speed = 600;
 	enemySpeed = 17.5;
-	scoreIncrement = 40;
 } else if (difficulty == 4) {
 	hero.speed = 600;
 	enemySpeed = 25;
-	scoreIncrement = 50;
 }}
 
-if (lives > 0 ) {
+if (lives > 0) {
 	score += scoreIncrement;
 }
-
 }
-
 // Reset Game
 
 var reset = function() {
