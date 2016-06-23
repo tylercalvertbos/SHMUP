@@ -182,7 +182,6 @@ var drawStuff = function() {
 			ctx.drawImage(enemySprite, enemy.x, enemy.y, 100, 100)
 		}
 	}
-}
 
 
 // Game Loop
