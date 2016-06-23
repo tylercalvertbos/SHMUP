@@ -67,6 +67,8 @@ var bulletSprite = new Image();
 bulletSprite.onload = function() {
 	bulletReady = true;
 }
+
+bulletSprite.src = 'images/ship/bullet.png'
 // Enemy Sprites
 
 var enemyReady = false;
@@ -172,8 +174,6 @@ var enemy8 = {
 	height : 100
 }
 
-var bulletX = bullet.x;
-
 var enemyX = enemy.x;
 var enemyX2 = enemy2.x;
 var enemyX3 = enemy3.x;
@@ -207,8 +207,8 @@ var update = function (modifier) {
 	if (68 in keysDown) { // Player holding right
 		hero.x += hero.speed * modifier;
 	}
-	if (191 in keysDown) { // Player firing
-		score += 2593847254;
+	if (27 in keysDown) { // Player firing
+		window.location = 'index.html'
 	}
 	if (82 in keysDown) { // Player reloading
 		location.reload();
@@ -310,6 +310,8 @@ if (difficulty == 1) {
 }
 
 if (screen.height < 1200 && screen.width < 2000) {
+	
+	bullet.width = 28;
 	hero.width = 50;
 	enemy.width = 50;
 	enemy2.width = 50;
@@ -320,6 +322,7 @@ if (screen.height < 1200 && screen.width < 2000) {
 	enemy7.width = 50;
 	enemy8.width = 50;
 
+	bullet.width = 18;
 	hero.height = 50;
 	enemy.height = 50;
 	enemy2.height = 50;
@@ -371,6 +374,7 @@ var reset = function() {
 	enemy7.y = (Math.random() * screen.height)
 	enemy8.y = (Math.random() * screen.height)
 
+	bulletX = bullet.x;
 	enemyX = enemy.x;
 	enemyX2 = enemy2.x;
 	enemyX3 = enemy3.x;
@@ -385,6 +389,7 @@ var reset = function() {
 
 var drawStuff = function() {
 
+	bulletX = bulletX + bullet.speed;
 	enemyX = enemyX - enemySpeed;
 	enemyX2 = enemyX2 - enemySpeed;
 	enemyX3 = enemyX3 - enemySpeed;
@@ -400,6 +405,12 @@ var drawStuff = function() {
 
 	if (heroReady) {
 		ctx.drawImage(heroSprite, hero.x, hero.y, hero.width, hero.height)
+	}
+
+	if (bulletReady) {
+		if (191 in keysDown) {
+			ctx.drawImage(bulletSprite, bullet.x, hero.y, bullet.width, bullet.height)
+		}
 	}
 
 	if (enemyReady) {
