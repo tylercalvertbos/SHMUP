@@ -214,43 +214,43 @@ var update = function (modifier) {
 		hero.y = canvas.height - hero.height;
 	}
 
-	if (hero.x < enemyX + 100 && hero.x + 100 > enemyX && hero.y < enemy.y + 100 && 100 + hero.y > enemy.y) {
+	if (hero.x < enemyX + enemy.width && hero.x + hero.width > enemyX && hero.y < enemy.y + enemy.height && hero.height + hero.y > enemy.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX4 + 100 && hero.x + 100 > enemyX4 && hero.y < enemy4.y + 100 && 100 + hero.y > enemy4.y) {
+	if (hero.x < enemyX4 + enemy2.width && hero.x + hero.width > enemyX4 && hero.y < enemy4.y + enemy2.height && hero.height + hero.y > enemy4.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX3 + 100 && hero.x + 100 > enemyX3 && hero.y < enemy3.y + 100 && 100 + hero.y > enemy3.y) {
+	if (hero.x < enemyX3 + enemy3.width && hero.x + hero.width > enemyX3 && hero.y < enemy3.y + enemy3.height && hero.height + hero.y > enemy3.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX2 + 100 && hero.x + 100 > enemyX2 && hero.y < enemy2.y + 100 && 100 + hero.y > enemy2.y) {
+	if (hero.x < enemyX2 + enemy4.width && hero.x + hero.width > enemyX2 && hero.y < enemy2.y + enemy4.height && hero.height + hero.y > enemy2.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX5 + 100 && hero.x + 100 > enemyX5 && hero.y < enemy5.y + 100 && 100 + hero.y > enemy5.y) {
+	if (hero.x < enemyX5 + enemy5.width && hero.x + hero.width > enemyX5 && hero.y < enemy5.y + enemy5.height && hero.height + hero.y > enemy5.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX6 + 100 && hero.x + 100 > enemyX6 && hero.y < enemy6.y + 100 && 100 + hero.y > enemy6.y) {
+	if (hero.x < enemyX6 + enemy6.width && hero.x + hero.width > enemyX6 && hero.y < enemy6.y + enemy6.height && hero.height + hero.y > enemy6.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX7 + 100 && hero.x + 100 > enemyX7 && hero.y < enemy7.y + 100 && 100 + hero.y > enemy7.y) {
+	if (hero.x < enemyX7 + enemy7.width && hero.x + hero.width > enemyX7 && hero.y < enemy7.y + enemy7.height && hero.height + hero.y > enemy7.y) {
 		lives -= 1;
 		reset();
 	}
 
-	if (hero.x < enemyX8 + 100 && hero.x + 100 > enemyX8 && hero.y < enemy8.y + 100 && 100 + hero.y > enemy8.y) {
-		lives -= 1;
+	if (hero.x < enemyX8 + enemy8.width && hero.x + hero.width > enemyX8 && hero.y < enemy8.y + enemy8.height && hero.height + hero.y > enemy8.y) {
+		lives -= 1;enemy.width
 		reset();
 	}
 
