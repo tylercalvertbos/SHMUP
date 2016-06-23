@@ -23,7 +23,10 @@ var keysDown = {};
 
 // Enemies
 
-
+var enemySprites = ['images/enemy4/enemy4.png', 'images/enemy1/enemy1.png', 'images/enemy2/enemy2.png', 'images/enemy3/enemy3.png']
+for (var i = 0 ; i < enemySprites.length ; i++) {
+	enemySprite.src = enemySprites[i];
+}
 
 // Background Image
 
@@ -55,16 +58,9 @@ enemySprite.onload = function() {
 	enemyReady = true;
 };
 
-enemySprite.src = 'images/enemy4/enemy4.png';
-
-var eBulletReady = false;
-var eBulletSprite = new Image();
-
-eBulletSprite.onload = function() {
-	eBulletReady = true;
+for (var i = 0 ; i < enemySprites.length ; i++) {
+	enemySprite.src = enemySprites[i];
 }
-
-eBulletSprite.src = 'images/eBullet.png';
 
 // Objects
 
@@ -164,7 +160,7 @@ var reset = function() {
 	score = 0;
 
 	enemy.x = 0;
-	enemy.y = (Math.random() * canvas.height)
+	enemy.y = (Math.random() * window.innerHeight)
 }
 
 // Draw Stuff
