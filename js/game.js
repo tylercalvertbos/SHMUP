@@ -271,7 +271,7 @@ var update = function (modifier) {
 	}
 
 if (lives > 0 ) {
-	score += 10;
+	score += scoreIncrement;
 }
 
 $('div').html('SCORE<br><br>' + score);
@@ -322,7 +322,7 @@ if (screen.height < 1000 && screen.width < 1500) {
 	enemy8.height = 50;
 
 	$('#lives').css('margin-top', '49%')
-	$('div').css('font-size', '50px')
+	$('div').css('font-size', '25%px')
 	
 
 if (difficulty == 1) {
