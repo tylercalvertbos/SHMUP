@@ -17,6 +17,8 @@ var score = 0;
 var lives = 5;
 var keysDown = {};
 var enemySpeed;
+var max = screen.width + 600;
+var min = screen.width;
 
 var dif = prompt('Choose Your Difficulty\n\n1 for Easy\n2 for Medium\n3 for Hard\n4 for Insane')
 
@@ -61,14 +63,6 @@ heroSprite.onload = function() {
 
 heroSprite.src = 'images/ship/ship.png';
 
-var bulletReady = false;
-var bulletSprite = new Image();
-
-bulletSprite.onload = function() {
-	bulletReady = true;
-}
-
-bulletSprite.src = 'images/ship/bullet.png'
 // Enemy Sprites
 
 var enemyReady = false;
@@ -110,13 +104,6 @@ var hero = {
 	y : canvas.height / 2.75,
 	width : 100,
 	height : 100
-}
-var bullet = {
-	speed : 1500,
-	x : hero.x / 2,
-	y : hero.y / 2,
-	width : 56,
-	height : 36
 }
 
 var enemy = {
@@ -174,14 +161,14 @@ var enemy8 = {
 	height : 100
 }
 
-var enemyX = enemy.x;
-var enemyX2 = enemy2.x;
-var enemyX3 = enemy3.x;
-var enemyX4 = enemy4.x;
-var enemyX5 = enemy5.x;
-var enemyX6 = enemy6.x;
-var enemyX7 = enemy7.x;
-var enemyX8 = enemy8.x;
+var enemyX = Math.random() * (max - min) + min;
+var enemyX2 = Math.random() * (max - min) + min;
+var enemyX3 = Math.random() * (max - min) + min;
+var enemyX4 = Math.random() * (max - min) + min;
+var enemyX5 = Math.random() * (max - min) + min;
+var enemyX6 = Math.random() * (max - min) + min;
+var enemyX7 = Math.random() * (max - min) + min;
+var enemyX8 = Math.random() * (max - min) + min;
 
 // Player Input
 
@@ -245,42 +232,50 @@ var update = function (modifier) {
 
 	if (hero.x < enemyX + enemy.width && hero.x + hero.width > enemyX && hero.y < enemy.y + enemy.height && hero.height + hero.y > enemy.y) {
 		lives -= 1;
-		reset();
+		enemyX = Math.random() * (max - min) + min;
+		enemy.y = (Math.random() * screen.height)
 	}
 
-	if (hero.x < enemyX4 + enemy2.width && hero.x + hero.width > enemyX4 && hero.y < enemy4.y + enemy2.height && hero.height + hero.y > enemy4.y) {
+	if (hero.x < enemyX2 + enemy2.width && hero.x + hero.width > enemyX2 && hero.y < enemy2.y + enemy2.height && hero.height + hero.y > enemy2.y) {
 		lives -= 1;
-		reset();
+		enemyX2 = Math.random() * (max - min) + min;
+		enemy2.y = (Math.random() * screen.height)
 	}
 
 	if (hero.x < enemyX3 + enemy3.width && hero.x + hero.width > enemyX3 && hero.y < enemy3.y + enemy3.height && hero.height + hero.y > enemy3.y) {
 		lives -= 1;
-		reset();
+		enemyX3 = Math.random() * (max - min) + min;
+		enemy3.y = (Math.random() * screen.height)
 	}
 
-	if (hero.x < enemyX2 + enemy4.width && hero.x + hero.width > enemyX2 && hero.y < enemy2.y + enemy4.height && hero.height + hero.y > enemy2.y) {
+	if (hero.x < enemyX4 + enemy4.width && hero.x + hero.width > enemyX4 && hero.y < enemy4.y + enemy4.height && hero.height + hero.y > enemy4.y) {
 		lives -= 1;
-		reset();
+		enemyX4 = Math.random() * (max - min) + min;
+		enemy4.y = (Math.random() * screen.height)
 	}
 
 	if (hero.x < enemyX5 + enemy5.width && hero.x + hero.width > enemyX5 && hero.y < enemy5.y + enemy5.height && hero.height + hero.y > enemy5.y) {
 		lives -= 1;
-		reset();
+		enemyX5 = Math.random() * (max - min) + min;
+		enemy5.y = (Math.random() * screen.height)
 	}
 
 	if (hero.x < enemyX6 + enemy6.width && hero.x + hero.width > enemyX6 && hero.y < enemy6.y + enemy6.height && hero.height + hero.y > enemy6.y) {
 		lives -= 1;
-		reset();
+		enemyX6 = Math.random() * (max - min) + min;
+		enemy6.y = (Math.random() * screen.height)
 	}
 
 	if (hero.x < enemyX7 + enemy7.width && hero.x + hero.width > enemyX7 && hero.y < enemy7.y + enemy7.height && hero.height + hero.y > enemy7.y) {
 		lives -= 1;
-		reset();
+		enemyX7 = Math.random() * (max - min) + min;
+		enemy7.y = (Math.random() * screen.height)
 	}
 
 	if (hero.x < enemyX8 + enemy8.width && hero.x + hero.width > enemyX8 && hero.y < enemy8.y + enemy8.height && hero.height + hero.y > enemy8.y) {
-		lives -= 1;enemy.width
-		reset();
+		lives -= 1;
+		enemyX8 = Math.random() * (max - min) + min;
+		enemy8.y = (Math.random() * screen.height)
 	}
 
 $('div').html('SCORE<br><br>' + score);
@@ -311,7 +306,6 @@ if (difficulty == 1) {
 
 if (screen.height < 1200 && screen.width < 2000) {
 	
-	bullet.width = 28;
 	hero.width = 50;
 	enemy.width = 50;
 	enemy2.width = 50;
@@ -322,7 +316,6 @@ if (screen.height < 1200 && screen.width < 2000) {
 	enemy7.width = 50;
 	enemy8.width = 50;
 
-	bullet.width = 18;
 	hero.height = 50;
 	enemy.height = 50;
 	enemy2.height = 50;
@@ -374,22 +367,20 @@ var reset = function() {
 	enemy7.y = (Math.random() * screen.height)
 	enemy8.y = (Math.random() * screen.height)
 
-	bulletX = bullet.x;
-	enemyX = enemy.x;
-	enemyX2 = enemy2.x;
-	enemyX3 = enemy3.x;
-	enemyX4 = enemy4.x;
-	enemyX5 = enemy5.x;
-	enemyX6 = enemy6.x;
-	enemyX7 = enemy7.x;
-	enemyX8 = enemy8.x;
+	enemyX = Math.random() * (max - min) + min;
+	enemyX2 = Math.random() * (max - min) + min;
+	enemyX3 = Math.random() * (max - min) + min;
+	enemyX4 = Math.random() * (max - min) + min;
+	enemyX5 = Math.random() * (max - min) + min;
+	enemyX6 = Math.random() * (max - min) + min;
+	enemyX7 = Math.random() * (max - min) + min;
+	enemyX8 = Math.random() * (max - min) + min;
 }
 
 // Draw Stuff
 
 var drawStuff = function() {
 
-	bulletX = bulletX + bullet.speed;
 	enemyX = enemyX - enemySpeed;
 	enemyX2 = enemyX2 - enemySpeed;
 	enemyX3 = enemyX3 - enemySpeed;
@@ -407,12 +398,6 @@ var drawStuff = function() {
 		ctx.drawImage(heroSprite, hero.x, hero.y, hero.width, hero.height)
 	}
 
-	if (bulletReady) {
-		if (191 in keysDown) {
-			ctx.drawImage(bulletSprite, bullet.x, hero.y, bullet.width, bullet.height)
-		}
-	}
-
 	if (enemyReady) {
 			ctx.drawImage(enemySprite, enemyX, enemy.y, enemy.width, enemy.height)
 			ctx.drawImage(enemy2Sprite, enemyX2, enemy2.y, enemy2.width, enemy2.height)
@@ -425,7 +410,43 @@ var drawStuff = function() {
 		}
 
 	if (enemyX < 0) {
-		reset();
+		enemyX = Math.random() * (max - min) + min;
+		enemy.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX2 < 0) {
+		enemyX2 = Math.random() * (max - min) + min;
+		enemy2.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX3 < 0) {
+		enemyX3 = Math.random() * (max - min) + min;
+		enemy3.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX4 < 0) {
+		enemyX4 = Math.random() * (max - min) + min;
+		enemy4.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX5 < 0) {
+		enemyX5 = Math.random() * (max - min) + min;
+		enemy5.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX6 < 0) {
+		enemyX6 = Math.random() * (max - min) + min;
+		enemy6.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX7 < 0) {
+		enemyX7 = Math.random() * (max - min) + min;
+		enemy7.y = (Math.random() * screen.height);
+	}
+
+	if (enemyX8 < 0) {
+		enemyX8 = Math.random() * (max - min) + min;
+		enemy8.y = (Math.random() * screen.height);
 	}
 	}
 
