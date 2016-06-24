@@ -28,10 +28,10 @@ if (dif == 1) {
 	difficulty = 2;
 } else if (dif == 4) {
 	difficulty = 4;
-} else if (dif == 'wwssadadabab 4') {
+} else if (dif == 'wwssadadba 4') {
 	difficulty = 4;
 	lives = 100;
-} else if (dif == 'wwssadadabab') {
+} else if (dif == 'wwssadadba') {
 	difficulty = 3;
 	lives = 100;
 } else {
